@@ -22,6 +22,16 @@ public class ApiController {
     private ItemRepository itemRepository;
 
     /**
+     * Lista todos los ítems de la tienda.
+     * @return Lista de todos los ítems almacenados en la base de datos.
+     */
+    @GetMapping("/items")
+    public ResponseEntity<List<Item>> getAllItems() {
+        List<Item> items = itemRepository.findAll();
+        return new ResponseEntity<>(items, HttpStatus.OK);
+    }
+
+    /**
      * Agrega un nuevo ítem a la base de datos.
      * @param item El ítem a agregar.
      * @return El ítem creado junto con el código de estado 201 (CREATED).
